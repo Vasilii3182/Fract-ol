@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 19:19:23 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/01 00:33:09 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/01 16:32:55 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@
 #define COORDX mlx->params->x
 #define COORDY mlx->params->y
 #define BPP mlx->image->bpp
+#define EY mlx->rose->ey
+#define EX mlx->rose->ex
+#define DX mlx->rose->dx
+#define DY mlx->rose->dy
+#define X_INCR mlx->rose->x_incr
+#define Y_INCR mlx->rose->y_incr
+#define RX mlx->rose->rx
+#define RY mlx->rose->ry
 
 typedef	struct			s_image {
 
@@ -58,12 +66,25 @@ typedef struct			s_equ {
 	int		y;
 }						t_equ;
 
+typedef struct          s_algo {
+
+	int ey;
+	int ex;
+	int dx;
+	int dy;
+	int x_incr;
+	int y_incr;
+	int rx;
+	int ry;
+}                       t_algo;
+
 typedef struct          s_mlx {
 
 	void    *mlx;
 	void    *win;
 	t_image *image;
 	t_equ   *params;
+	t_algo	*rose;
 }                       t_mlx;
 
 void	mandel_maths(t_mlx *mlx);
@@ -73,5 +94,7 @@ void	*new_image(t_mlx *mlx);
 t_mlx	*initialize_win();
 t_mlx	*mlx_free(t_mlx *mlx);
 t_equ	*initialize();
+void	julia_maths(t_mlx *mlx);
+void	trunk(t_mlx *mlx);
 
 #endif

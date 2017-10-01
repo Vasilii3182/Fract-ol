@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   sierpinski.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/30 16:25:29 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/01 14:00:02 by ofranco          ###   ########.fr       */
+/*   Created: 2017/10/01 12:08:50 by ofranco           #+#    #+#             */
+/*   Updated: 2017/10/01 12:22:21 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	julia_coords(t_mlx *mlx)
+void    sierpinski_coords(t_mlx *mlx)
 {
 	int     i;
 	double  stand;
@@ -22,25 +22,25 @@ void	julia_coords(t_mlx *mlx)
 	ZI = COORDY / Z + YNEG;
 	CI = 0.285;
 	CR = 0.001;
-	while ((pow(ZR, 2) - pow(ZI, 2)) < 4 && i < 50)
+	while ((pow(ZR, 2) - pow(ZI, 2)) < 4 && i < 150)
 	{
 		stand = ZR;
 		ZR = pow(ZR, 2) - pow(ZI, 2) + CR;
 		ZI = 2 * ZI * stand + CI;
 		i++;
 	}
-	if (i == 50)
+	if (i == 150)
 		image_set_pixel(mlx);
 	return;
 }
 
-void	julia_maths(t_mlx *mlx)
+void    sierpinski_maths(t_mlx *mlx)
 {
 	XNEG = -1.5;
 	XPOS = 1.5;
 	YNEG = -1.5;
 	YPOS = 1.5;
-	Z = 300;
+	Z = 150;
 	FX = (XPOS - XNEG) * Z;
 	FY = (YPOS - YNEG) * Z;
 	COORDX = 0;
@@ -49,7 +49,7 @@ void	julia_maths(t_mlx *mlx)
 		COORDY = 0;
 		while (COORDY < FY)
 		{
-			julia_coords(mlx);
+			sierpinski_coords(mlx);
 			COORDY++;
 		}
 		COORDX++;

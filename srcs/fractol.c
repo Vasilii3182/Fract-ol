@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 15:51:39 by ofranco           #+#    #+#             */
-/*   Updated: 2017/09/30 23:50:35 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/01 16:35:43 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,12 @@ int main(int argc, char **argv)
 	char	*charset;
 	t_mlx	*mlx;
 	
-	charset = "MJ";
+	charset = "MJT";
 	if ((mlx = initialize_win()) == NULL)
 		return (-1);
 	if (argc != 2 || ft_search(argv[1], charset) == 0)
 	{
 		ft_putstr("Usage : ./fractol [fractal]\n[M]:Mandelbrot | [J]:Julia |");
-		return (0);
-	}
-	if (argv[1][0] == 'J')
-	{
-		//Print_Julia;
 		return (0);
 	}
 	if ((mlx->win = mlx_new_window(mlx->mlx, 700, 700, "fractol")) == NULL)
@@ -59,6 +54,14 @@ int main(int argc, char **argv)
 	if (argv[1][0] == 'M')
 	{
 		mandel_maths(mlx);	
+	}
+	if (argv[1][0] == 'J')
+	{
+		julia_maths(mlx);
+	}
+	if (argv[1][0] == 'T')
+	{
+		trunk(mlx);
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image->image, 0, 0);
 	mlx_loop(mlx->mlx);

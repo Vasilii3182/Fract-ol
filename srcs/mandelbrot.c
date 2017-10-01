@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 16:26:12 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/01 00:20:35 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/01 12:27:53 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	mandel_coord(t_mlx *mlx)
 		i++;
 	}
 	if (i == 50)
-		image_set_pixel(mlx);	
+		image_set_pixel(mlx);
 	return;
 }
 
