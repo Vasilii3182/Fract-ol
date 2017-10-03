@@ -6,7 +6,7 @@
 #    By: ofranco <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/21 14:38:17 by ofranco           #+#    #+#              #
-#    Updated: 2017/10/01 16:26:43 by ofranco          ###   ########.fr        #
+#    Updated: 2017/10/03 21:27:16 by ofranco          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCPATH = ./srcs/
 
 HEADER = ./includes/
 
-SRCS = tree.c julia.c mandelbrot.c fractol.c window.c image.c
+SRCS = zoom.c hook.c color.c burningship.c julia.c mandelbrot.c fractol.c window.c image.c
 
 LIB = Libft/Libft.a
 

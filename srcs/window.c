@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 18:13:39 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/01 16:04:32 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/03 17:45:27 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_mlx       *mlx_free(t_mlx *mlx)
 	if (mlx->image != NULL)
 		delete_image(mlx);
 	ft_memdel((void **)&mlx);
+	exit(0);
 	return (NULL);
 }
 

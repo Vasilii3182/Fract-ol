@@ -1,55 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sierpinski.c                                       :+:      :+:    :+:   */
+/*   burningship.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/01 12:08:50 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/01 12:22:21 by ofranco          ###   ########.fr       */
+/*   Created: 2017/10/03 14:50:50 by ofranco           #+#    #+#             */
+/*   Updated: 2017/10/03 22:30:38 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void    sierpinski_coords(t_mlx *mlx)
+void    burningship_coords(t_mlx *mlx)
 {
 	int     i;
 	double  stand;
 
 	i = 0;
-	ZR = COORDX / Z + XNEG;
-	ZI = COORDY / Z + YNEG;
-	CI = 0.285;
-	CR = 0.001;
-	while ((pow(ZR, 2) - pow(ZI, 2)) < 4 && i < 150)
+	ZR = 0;
+	ZI = 0;
+	CI = COORDY / (W_HEIGHT / (YPOS - YNEG)) + YNEG;
+	CR = COORDX / (W_WIDTH / (XPOS -XNEG)) + XNEG;
+	while ((pow(ZR, 2) + pow(ZI, 2)) < 4 && i < I_MAX)
 	{
 		stand = ZR;
-		ZR = pow(ZR, 2) - pow(ZI, 2) + CR;
-		ZI = 2 * ZI * stand + CI;
+		ZR = fabs(pow(ZR, 2) - pow(ZI, 2) + CR);
+		ZI = fabs(2 * ZI * stand + CI);
 		i++;
 	}
-	if (i == 150)
-		image_set_pixel(mlx);
+	if (i == I_MAX)
+		image_set_pixel(mlx, 0x00000);
+	else
+		image_set_pixel(mlx, ft_get_color(0, i * 255 / I_MAX, 0));
 	return;
 }
 
-void    sierpinski_maths(t_mlx *mlx)
+void    burningship_maths(t_mlx *mlx)
 {
-	XNEG = -1.5;
-	XPOS = 1.5;
-	YNEG = -1.5;
-	YPOS = 1.5;
-	Z = 150;
-	FX = (XPOS - XNEG) * Z;
-	FY = (YPOS - YNEG) * Z;
 	COORDX = 0;
-	while (COORDX < FX)
+	while (COORDX < W_WIDTH)
 	{
 		COORDY = 0;
-		while (COORDY < FY)
+		while (COORDY < W_HEIGHT)
 		{
-			sierpinski_coords(mlx);
+			burningship_coords(mlx);
 			COORDY++;
 		}
 		COORDX++;

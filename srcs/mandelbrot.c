@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 16:26:12 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/01 12:27:53 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/03 22:30:52 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,37 +19,32 @@ void	mandel_coord(t_mlx *mlx)
 	double	stand;
 	
 	i = 0;
-	CR = COORDX / Z + XNEG;
-	CI = COORDY / Z + YNEG;
+	CR = COORDX / (W_WIDTH / (XPOS - XNEG)) + XNEG;
+	CI = COORDY / (W_HEIGHT / (YPOS - YNEG)) + YNEG;
 	ZI = 0;
 	ZR = 0;
-	while ((pow(ZR, 2) - pow(ZI, 2)) < 4 && i < 50)
+	while ((pow(ZR, 2) + pow(ZI, 2)) < 4 && i < I_MAX)
 	{
 		stand = ZR;
 		ZR = pow(ZR, 2) - pow(ZI, 2) + CR;
 		ZI = 2 * ZI * stand + CI;
 		i++;
 	}
-	if (i == 50)
-		image_set_pixel(mlx);
+	if (i == I_MAX)
+		image_set_pixel(mlx, 0x000000);
+	else
+		image_set_pixel(mlx, ft_get_color(0, 0, (i * 255 / I_MAX)));
 	return;
 }
 
 void	mandel_maths(t_mlx *mlx)
 {
 	
-	XNEG = -2.1;
-	XPOS = 0.6;
-	YNEG = -1.2;
-	YPOS = 1.2;
-	Z = 250;
-	FX = (XPOS - XNEG) * Z;
-	FY = (YPOS - YNEG) * Z;
 	COORDX = 0;
-	while (COORDX < FX)
+	while (COORDX < W_WIDTH)
 	{
 		COORDY = 0;
-		while (COORDY < FY)
+		while (COORDY < W_HEIGHT)
 		{
 			mandel_coord(mlx);
 			COORDY++;

@@ -6,11 +6,12 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 16:25:29 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/01 14:00:02 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/03 22:46:05 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdio.h>
 
 void	julia_coords(t_mlx *mlx)
 {
@@ -18,36 +19,29 @@ void	julia_coords(t_mlx *mlx)
 	double  stand;
 
 	i = 0;
-	ZR = COORDX / Z + XNEG;
-	ZI = COORDY / Z + YNEG;
-	CI = 0.285;
-	CR = 0.001;
-	while ((pow(ZR, 2) - pow(ZI, 2)) < 4 && i < 50)
+	ZR = (double)COORDX / (W_WIDTH / (XPOS - XNEG)) + XNEG;
+	ZI = (double)COORDY / (W_HEIGHT / (YPOS - YNEG)) + YNEG;
+	while ((ZR * ZR + ZI * ZI) < 4 && i < I_MAX)
 	{
 		stand = ZR;
 		ZR = pow(ZR, 2) - pow(ZI, 2) + CR;
 		ZI = 2 * ZI * stand + CI;
 		i++;
 	}
-	if (i == 50)
-		image_set_pixel(mlx);
+	if (i == I_MAX)
+		image_set_pixel(mlx, 0x000000);
+	else
+		image_set_pixel(mlx, ft_get_color(i * 255 / I_MAX, 0, 0));
 	return;
 }
 
 void	julia_maths(t_mlx *mlx)
 {
-	XNEG = -1.5;
-	XPOS = 1.5;
-	YNEG = -1.5;
-	YPOS = 1.5;
-	Z = 300;
-	FX = (XPOS - XNEG) * Z;
-	FY = (YPOS - YNEG) * Z;
 	COORDX = 0;
-	while (COORDX < FX)
+	while (COORDX < W_WIDTH)
 	{
 		COORDY = 0;
-		while (COORDY < FY)
+		while (COORDY < W_HEIGHT)
 		{
 			julia_coords(mlx);
 			COORDY++;
