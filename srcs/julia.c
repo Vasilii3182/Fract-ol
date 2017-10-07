@@ -6,17 +6,16 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 16:25:29 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/03 22:46:05 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/04 16:50:54 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 void	julia_coords(t_mlx *mlx)
 {
-	int     i;
-	double  stand;
+	int		i;
+	double	stand;
 
 	i = 0;
 	ZR = (double)COORDX / (W_WIDTH / (XPOS - XNEG)) + XNEG;
@@ -32,7 +31,7 @@ void	julia_coords(t_mlx *mlx)
 		image_set_pixel(mlx, 0x000000);
 	else
 		image_set_pixel(mlx, ft_get_color(i * 255 / I_MAX, 0, 0));
-	return;
+	return ;
 }
 
 void	julia_maths(t_mlx *mlx)
@@ -48,5 +47,5 @@ void	julia_maths(t_mlx *mlx)
 		}
 		COORDX++;
 	}
-	return;
+	return ;
 }
