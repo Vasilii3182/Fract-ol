@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 16:26:12 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/04 16:51:04 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/07 13:35:51 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	mandel_coord(t_mlx *mlx)
 	CI = COORDY / (W_HEIGHT / (YPOS - YNEG)) + YNEG;
 	ZI = 0;
 	ZR = 0;
-	while ((pow(ZR, 2) + pow(ZI, 2)) < 4 && i < I_MAX)
+	while ((ZR * ZR + ZI * ZI) < 4 && i < I_MAX)
 	{
 		stand = ZR;
-		ZR = pow(ZR, 2) - pow(ZI, 2) + CR;
+		ZR = ZR * ZR - ZI * ZI + CR;
 		ZI = 2 * ZI * stand + CI;
 		i++;
 	}
@@ -49,5 +49,6 @@ void	mandel_maths(t_mlx *mlx)
 		}
 		COORDX++;
 	}
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image->image, 0, 0);
 	return ;
 }

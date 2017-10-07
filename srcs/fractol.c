@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 15:51:39 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/07 13:03:56 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/07 13:47:30 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,6 @@ int		ft_search(char *str, char *charset)
 
 void	activate_fractol(t_mlx *mlx)
 {
-	W_WIDTH = 800;
-	W_HEIGHT = 720;
-	if ((mlx->win =
-				mlx_new_window(mlx->mlx, W_WIDTH, W_HEIGHT, "fractol")) == NULL)
-		mlx_free(mlx);
-	if ((mlx->image = new_image(mlx)) == NULL)
-		mlx_free(mlx);
 	if (NAME[0] == 'M')
 		init_mandel(mlx);
 	if (NAME[0] == 'J')
@@ -59,13 +52,16 @@ int		main(int argc, char **argv)
 		ft_putstr("[M]:Mandelbrot | [J]=Julia | [B]=Burning ship\n");
 		return (0);
 	}
+	if ((mlx->win =
+				mlx_new_window(mlx->mlx, W_WIDTH, W_HEIGHT, "fractol")) == NULL)
+		mlx_free(mlx);
+	if ((mlx->image = new_image(mlx)) == NULL)
+		mlx_free(mlx);
 	NAME = ft_strdup(argv[1]);
-	activate_fractol(mlx);
-	//mlx_expose_hook(mlx->win, redraw_func, 0);
 	mlx_key_hook(mlx->win, key_func, mlx);
 	mlx_mouse_hook(mlx->win, mouse_func, mlx);
 	mlx_hook(mlx->win, 6, 0, mouse_movement, mlx);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image->image, 0, 0);
+	activate_fractol(mlx);
 	mlx_loop(mlx->mlx);
 	return (0);
 }

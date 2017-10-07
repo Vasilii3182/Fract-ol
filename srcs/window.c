@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 18:13:39 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/04 12:37:45 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/07 13:47:22 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_mlx	*initialize_win(void)
 			|| (mlx->params = ft_memalloc(sizeof(t_equ))) == NULL
 			|| (mlx->rose = ft_memalloc(sizeof(t_algo))) == NULL)
 		return (mlx_free(mlx));
+	W_WIDTH = 800;
+	W_HEIGHT = 720;
 	return (mlx);
 }
 

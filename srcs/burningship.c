@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 14:50:50 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/04 12:46:14 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/07 13:39:22 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	burningship_coords(t_mlx *mlx)
 	ZI = 0;
 	CI = COORDY / (W_HEIGHT / (YPOS - YNEG)) + YNEG;
 	CR = COORDX / (W_WIDTH / (XPOS - XNEG)) + XNEG;
-	while ((pow(ZR, 2) + pow(ZI, 2)) < 4 && i < I_MAX)
+	while ((ZR * ZR + ZI * ZI) < 4 && i < I_MAX)
 	{
 		stand = ZR;
-		ZR = fabs(pow(ZR, 2) - pow(ZI, 2) + CR);
+		ZR = fabs(ZR * ZR - ZI * ZI + CR);
 		ZI = fabs(2 * ZI * stand + CI);
 		i++;
 	}
@@ -49,5 +49,6 @@ void	burningship_maths(t_mlx *mlx)
 		}
 		COORDX++;
 	}
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image->image, 0, 0);
 	return ;
 }

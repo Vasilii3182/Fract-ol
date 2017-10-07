@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 16:25:29 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/04 16:50:54 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/07 13:36:48 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	julia_coords(t_mlx *mlx)
 	while ((ZR * ZR + ZI * ZI) < 4 && i < I_MAX)
 	{
 		stand = ZR;
-		ZR = pow(ZR, 2) - pow(ZI, 2) + CR;
+		ZR = ZR * ZR - ZI * ZI + CR;
 		ZI = 2 * ZI * stand + CI;
 		i++;
 	}
@@ -47,5 +47,6 @@ void	julia_maths(t_mlx *mlx)
 		}
 		COORDX++;
 	}
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image->image, 0, 0);
 	return ;
 }
