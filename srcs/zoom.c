@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/03 18:13:52 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/07 12:58:09 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/07 17:38:48 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 double	interpolate(double strt, double end, double interp, t_mlx *mlx)
 {
 	if (mlx)
-		return (strt + ((end - strt) * ((BUTTON == 1) ? interp : 1 / interp)));
+		return (strt + ((end - strt) * ((BUTTON == 5) ? interp : 1 / interp)));
 	return (0);
 }
 

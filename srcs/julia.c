@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 16:25:29 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/07 13:36:48 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/07 15:31:15 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	julia_coords(t_mlx *mlx)
 	double	stand;
 
 	i = 0;
-	ZR = (double)COORDX / (W_WIDTH / (XPOS - XNEG)) + XNEG;
-	ZI = (double)COORDY / (W_HEIGHT / (YPOS - YNEG)) + YNEG;
+	ZR = (double)COORDX / (W_WIDTH / (XPOS - XNEG)) + XNEG + 0.5;
+	ZI = (double)COORDY / (W_HEIGHT / (YPOS - YNEG)) + YNEG + 0.1;
 	while ((ZR * ZR + ZI * ZI) < 4 && i < I_MAX)
 	{
 		stand = ZR;
